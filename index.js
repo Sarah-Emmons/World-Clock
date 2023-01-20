@@ -28,21 +28,52 @@ button.addEventListener("click", themeChange);
 function updateTime() {
   //tokyo
   let tokyoElement = document.querySelector("#tokyo");
-  let tokyoDateElement = tokyoElement.querySelector(".date");
-  let tokyoTimeElement = tokyoElement.querySelector(".time");
-  let tokyoTime = moment().tz("Asia/Tokyo");
-  tokyoDateElement.innerHTML = tokyoTime.format("MMMM Do, YYYY");
-  tokyoTimeElement.innerHTML = tokyoTime.format("h:mm:ss [<small>]A[</small>]");
-
+  if (tokyoElement) {
+    let tokyoDateElement = tokyoElement.querySelector(".date");
+    let tokyoTimeElement = tokyoElement.querySelector(".time");
+    let tokyoTime = moment().tz("Asia/Tokyo");
+    tokyoDateElement.innerHTML = tokyoTime.format("MMMM Do, YYYY");
+    tokyoTimeElement.innerHTML = tokyoTime.format(
+      "h:mm:ss [<small>]A[</small>]"
+    );
+  }
   //edmonton
   let edmontonElement = document.querySelector("#edmonton");
-  let edmontonDateElement = edmontonElement.querySelector(".date");
-  let edmontonTimeElement = edmontonElement.querySelector(".time");
-  let edmontonTime = moment().tz("America/Edmonton");
-  edmontonDateElement.innerHTML = edmontonTime.format("MMMM Do, YYYY");
-  edmontonTimeElement.innerHTML = edmontonTime.format(
-    "h:mm:ss [<small>]A[</small>]"
-  );
+  if (edmontonElement) {
+    let edmontonDateElement = edmontonElement.querySelector(".date");
+    let edmontonTimeElement = edmontonElement.querySelector(".time");
+    let edmontonTime = moment().tz("America/Edmonton");
+    edmontonDateElement.innerHTML = edmontonTime.format("MMMM Do, YYYY");
+    edmontonTimeElement.innerHTML = edmontonTime.format(
+      "h:mm:ss [<small>]A[</small>]"
+    );
+  }
 }
 updateTime();
 setInterval(updateTime, 1000);
+
+//Select function
+function updateCity(event) {
+  let cityTimeZone = event.target.value;
+  //console.log(cityTimeZone);
+  let cityName = cityTimeZone.replace("_", " ").split("/")[1];
+  let cityTime = moment().tz(cityTimeZone);
+  //console.log(cityTime.format("MMMM Do, YYYY"));
+  let citiesElement = document.querySelector("#cities");
+  //citiesElement.innerHTML = cityTimeZone;
+  citiesElement.innerHTML = `
+          <div class="city">
+          <div>
+            <h2>${cityName}</h2>
+            <div class="date">${cityTime.format("MMMM Do, YYYY")}</div>
+          </div>
+          <div>
+            <div class="time">${cityTime.format("h:mm:ss ")}
+            <small>${cityTime.format("A")}</small>
+            </div>
+          </div>
+        </div>`;
+}
+
+let citiesSelectElement = document.querySelector("#city");
+citiesSelectElement.addEventListener("change", updateCity);
