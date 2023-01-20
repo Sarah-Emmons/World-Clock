@@ -76,16 +76,38 @@ function updateCity(event) {
             </div>
           </div>
         </div>
+        <p id="tzLoader">${cityTimeZone}</p>
+        <br />
         <a href="/" id="reset-link">All Cities</a>
         `;
 }
 
+//hide timezone
+function hideTZ() {
+  let tZ = document.querySelector("p");
+  tZ.style.color = "transparent";
+  tZ.style.fontSize = "1px";
+  tZ.style.userSelect = "none";
+  //console.log(tZ.firstChild.textContent);
+}
+
 let citiesSelectElement = document.querySelector("#city");
 citiesSelectElement.addEventListener("change", updateCity);
+citiesSelectElement.addEventListener("change", hideTZ);
 
-//function timeUpdate() {
-//  let selectedCityElement = document.querySelector(".city");
-//  let selectedDateElement = selectedCityElement.querySelector(".date");
-//  let selectedTimeElement = selectedCityElement.querySelector(".time");
-//  let selectedTime = moment().tz("#selectedCity.date.value")
-//}
+function timeUpdate() {
+  let selectedCityElement = document.querySelector(".city");
+  if (selectedCityElement) {
+    let tzParent = document.querySelector("p");
+    let tZ = tzParent.firstChild.textContent;
+    let selectedDateElement = selectedCityElement.querySelector(".date");
+    let selectedTimeElement = selectedCityElement.querySelector(".time");
+    let selectedTime = moment().tz(tZ);
+    selectedDateElement.innerHTML = selectedTime.format("MMMM Do, YYYY");
+    selectedTimeElement.innerHTML = selectedTime.format(
+      "h:mm:ss [<small>]A[</small>]"
+    );
+  }
+}
+
+setInterval(timeUpdate, 1000);
