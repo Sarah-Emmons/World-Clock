@@ -66,7 +66,7 @@ function updateCity(event) {
   //citiesElement.innerHTML = cityTimeZone;
   citiesElement.innerHTML = `
           <div class="city">
-          <div>
+          <div id="selectedCity">
             <h2>${cityName}</h2>
             <div class="date">${cityTime.format("MMMM Do, YYYY")}</div>
           </div>
@@ -75,8 +75,17 @@ function updateCity(event) {
             <small>${cityTime.format("A")}</small>
             </div>
           </div>
-        </div>`;
+        </div>
+        <a href="/" id="reset-link">All Cities</a>
+        `;
 }
 
 let citiesSelectElement = document.querySelector("#city");
 citiesSelectElement.addEventListener("change", updateCity);
+
+//function timeUpdate() {
+//  let selectedCityElement = document.querySelector(".city");
+//  let selectedDateElement = selectedCityElement.querySelector(".date");
+//  let selectedTimeElement = selectedCityElement.querySelector(".time");
+//  let selectedTime = moment().tz("#selectedCity.date.value")
+//}
