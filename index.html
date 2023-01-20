@@ -18,29 +18,31 @@
   <body>
     <div class="container">
       <h1>World Clock</h1>
-      <select>
+      <select id="city">
         <option value="">Please select a city...</option>
-        <option value="">Tokyo</option>
-        <option value="">Edmonton</option>
-        <option value="">Auckland</option>
-        <option value="">Edinburgh</option>
+        <option value="Asia/Tokyo">Tokyo</option>
+        <option value="America/Edmonton">Edmonton</option>
+        <option value="Pacific/Auckland">Auckland</option>
+        <option value="Europe/London">London</option>
       </select>
-      <div class="city" id="tokyo">
-        <div>
-          <h2>Tokyo</h2>
-          <div class="date"></div>
+      <div id="cities">
+        <div class="city" id="tokyo">
+          <div>
+            <h2>Tokyo</h2>
+            <div class="date"></div>
+          </div>
+          <div>
+            <div class="time"></div>
+          </div>
         </div>
-        <div>
-          <div class="time"></div>
-        </div>
-      </div>
-      <div class="city" id="edmonton">
-        <div>
-          <h2>Edmonton</h2>
-          <div class="date"></div>
-        </div>
-        <div>
-          <div class="time"></div>
+        <div class="city" id="edmonton">
+          <div>
+            <h2>Edmonton</h2>
+            <div class="date"></div>
+          </div>
+          <div>
+            <div class="time"></div>
+          </div>
         </div>
       </div>
       <br />
