@@ -99,14 +99,16 @@ function timeUpdate() {
   let selectedCityElement = document.querySelector(".city");
   if (selectedCityElement) {
     let tzParent = document.querySelector("p");
-    let tZ = tzParent.firstChild.textContent;
-    let selectedDateElement = selectedCityElement.querySelector(".date");
-    let selectedTimeElement = selectedCityElement.querySelector(".time");
-    let selectedTime = moment().tz(tZ);
-    selectedDateElement.innerHTML = selectedTime.format("MMMM Do, YYYY");
-    selectedTimeElement.innerHTML = selectedTime.format(
-      "h:mm:ss [<small>]A[</small>]"
-    );
+    if (tzParent) {
+      let tZ = tzParent.firstChild.textContent;
+      let selectedDateElement = selectedCityElement.querySelector(".date");
+      let selectedTimeElement = selectedCityElement.querySelector(".time");
+      let selectedTime = moment().tz(tZ);
+      selectedDateElement.innerHTML = selectedTime.format("MMMM Do, YYYY");
+      selectedTimeElement.innerHTML = selectedTime.format(
+        "h:mm:ss [<small>]A[</small>]"
+      );
+    }
   }
 }
 
